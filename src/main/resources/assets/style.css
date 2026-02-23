@@ -1,0 +1,212 @@
+:root {
+    --bg: #f5f5f5;
+    --card-bg: #ffffff;
+    --border: #e0e0e0;
+    --text: #333333;
+    --text-muted: #888888;
+    --accent: #1a73e8;
+    --change-bg: #fff8e1;
+    --change-text: #e65100;
+    --badge-bg: #1a73e8;
+    --badge-text: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+header {
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.release-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.release-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.release-header:hover {
+    background: #fafafa;
+}
+
+.release-header h2 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.version-badge {
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    padding: 0.15rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.tag-name {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+.expand-icon {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    transition: transform 0.2s;
+}
+
+.release-card.expanded .expand-icon {
+    transform: rotate(180deg);
+}
+
+.version-table-wrap {
+    padding: 0 1.25rem 1rem;
+}
+
+.version-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.version-table th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 2px solid var(--border);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+}
+
+.version-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.version-table tr.changed {
+    background: var(--change-bg);
+}
+
+.version-table code {
+    font-size: 0.85rem;
+    background: #f0f0f0;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+}
+
+.change-indicator {
+    color: var(--change-text);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.no-change {
+    color: var(--text-muted);
+}
+
+.commits-section {
+    display: none;
+    padding: 0 1.25rem 1.25rem;
+}
+
+.release-card.expanded .commits-section {
+    display: block;
+}
+
+.commits-section h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 1rem 0 0.5rem;
+    color: var(--text);
+}
+
+.commits-container {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.commits-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.commits-table th {
+    text-align: left;
+    padding: 0.4rem 0.75rem;
+    background: #fafafa;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+}
+
+.commits-table td {
+    padding: 0.35rem 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.commits-table code {
+    font-size: 0.8rem;
+    color: var(--accent);
+}
+
+.commit-count {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    padding: 0.4rem 0.75rem;
+    background: #fafafa;
+}
+
+.loading {
+    padding: 0.75rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.empty {
+    padding: 0.75rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}

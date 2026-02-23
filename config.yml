@@ -1,0 +1,22 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8081
+
+sdlc:
+  path: ../legend-sdlc
+  tagPrefix: "legend-sdlc-"
+engine:
+  path: ../legend-engine
+  tagPrefix: "legend-engine-"
+pure:
+  path: ../legend-pure
+  tagPrefix: "legend-pure-"
+shared:
+  path: ../legend-shared
+  tagPrefix: "legend-shared-"
+
+recentTagCount: 10
