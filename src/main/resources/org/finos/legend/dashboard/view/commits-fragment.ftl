@@ -11,8 +11,8 @@
     <tbody>
         <#list commits as commit>
         <tr>
-            <td><code>${commit.shortHash()}</code></td>
-            <td>${commit.message()}</td>
+            <td><#if githubUrl??><a href="${githubUrl}/commit/${commit.hash()}" class="commit-link"><code>${commit.shortHash()}</code></a><#else><code>${commit.shortHash()}</code></#if></td>
+            <td>${view.linkifyMessage(commit.message())?no_esc}</td>
         </tr>
         </#list>
     </tbody>

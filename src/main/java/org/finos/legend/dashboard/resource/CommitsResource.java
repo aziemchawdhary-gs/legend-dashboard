@@ -28,6 +28,7 @@ public class CommitsResource {
                                         @QueryParam("from") String fromTag,
                                         @QueryParam("to") String toTag) {
         List<CommitInfo> commits = dataService.getCommitsForRange(repo, fromTag, toTag);
-        return new CommitsFragmentView(commits, repo);
+        String githubUrl = dataService.getGithubUrl(repo);
+        return new CommitsFragmentView(commits, repo, githubUrl);
     }
 }

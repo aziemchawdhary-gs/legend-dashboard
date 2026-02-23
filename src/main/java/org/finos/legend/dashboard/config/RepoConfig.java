@@ -13,6 +13,9 @@ public class RepoConfig {
     @JsonProperty
     private String tagPrefix;
 
+    @JsonProperty
+    private String githubUrl;
+
     public String getPath() {
         return path;
     }
@@ -27,5 +30,13 @@ public class RepoConfig {
 
     public void setTagPrefix(String tagPrefix) {
         this.tagPrefix = tagPrefix;
+    }
+
+    public String getGithubUrl() {
+        return githubUrl;
+    }
+
+    public void setGithubUrl(String githubUrl) {
+        this.githubUrl = githubUrl;
     }
 }

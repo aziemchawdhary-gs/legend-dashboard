@@ -27,6 +27,7 @@ public class GitRepoReader {
 
     private final Repository repository;
     private final String tagPrefix;
+    private final String githubUrl;
     private final Pattern versionPattern;
 
     public GitRepoReader(RepoConfig config) throws IOException {
@@ -36,6 +37,7 @@ public class GitRepoReader {
                 .readEnvironment()
                 .build();
         this.tagPrefix = config.getTagPrefix();
+        this.githubUrl = config.getGithubUrl();
         this.versionPattern = Pattern.compile("^" + Pattern.quote(tagPrefix) + "(\\d+\\.\\d+\\.\\d+)$");
     }
 
@@ -141,6 +143,10 @@ public class GitRepoReader {
 
     public String getTagPrefix() {
         return tagPrefix;
+    }
+
+    public String getGithubUrl() {
+        return githubUrl;
     }
 
     public String versionFromTag(String tag) {

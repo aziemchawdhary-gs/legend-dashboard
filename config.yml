@@ -9,14 +9,18 @@ server:
 sdlc:
   path: ../legend-sdlc
   tagPrefix: "legend-sdlc-"
+  githubUrl: "https://github.com/finos/legend-sdlc"
 engine:
   path: ../legend-engine
   tagPrefix: "legend-engine-"
+  githubUrl: "https://github.com/finos/legend-engine"
 pure:
   path: ../legend-pure
   tagPrefix: "legend-pure-"
+  githubUrl: "https://github.com/finos/legend-pure"
 shared:
   path: ../legend-shared
   tagPrefix: "legend-shared-"
+  githubUrl: "https://github.com/finos/legend-shared"
 
 recentTagCount: 10

@@ -100,6 +100,10 @@ public class DashboardDataService {
     }
 
 
+    public String getGithubUrl(String repo) {
+        return getReaderForRepo(repo).getGithubUrl();
+    }
+
     private GitRepoReader getReaderForRepo(String repo) {
         return switch (repo) {
             case "sdlc" -> sdlcReader;

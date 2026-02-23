@@ -191,6 +191,23 @@ header h1 {
     color: var(--accent);
 }
 
+.commits-table a.commit-link {
+    text-decoration: none;
+}
+
+.commits-table a.commit-link:hover code {
+    text-decoration: underline;
+}
+
+.commits-table td a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.commits-table td a:hover {
+    text-decoration: underline;
+}
+
 .commit-count {
     font-size: 0.8rem;
     color: var(--text-muted);
