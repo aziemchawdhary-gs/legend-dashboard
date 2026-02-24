@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotEmpty;
 
 public class RepoConfig {
 
-    @NotEmpty
     @JsonProperty
     private String path;
 
@@ -13,8 +12,15 @@ public class RepoConfig {
     @JsonProperty
     private String tagPrefix;
 
+    @NotEmpty
     @JsonProperty
     private String githubUrl;
+
+    @JsonProperty
+    private String displayName;
+
+    @JsonProperty
+    private String pomProperty;
 
     public String getPath() {
         return path;
@@ -38,5 +44,21 @@ public class RepoConfig {
 
     public void setGithubUrl(String githubUrl) {
         this.githubUrl = githubUrl;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getPomProperty() {
+        return pomProperty;
+    }
+
+    public void setPomProperty(String pomProperty) {
+        this.pomProperty = pomProperty;
     }
 }

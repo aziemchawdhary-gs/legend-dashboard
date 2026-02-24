@@ -41,6 +41,16 @@ public class GitRepoReader {
         this.versionPattern = Pattern.compile("^" + Pattern.quote(tagPrefix) + "(\\d+\\.\\d+\\.\\d+)$");
     }
 
+    public GitRepoReader(File bareRepoDir, RepoConfig config) throws IOException {
+        this.repository = new FileRepositoryBuilder()
+                .setGitDir(bareRepoDir)
+                .readEnvironment()
+                .build();
+        this.tagPrefix = config.getTagPrefix();
+        this.githubUrl = config.getGithubUrl();
+        this.versionPattern = Pattern.compile("^" + Pattern.quote(tagPrefix) + "(\\d+\\.\\d+\\.\\d+)$");
+    }
+
     public List<String> listRecentTags(int count) throws IOException {
         List<Ref> tagRefs = repository.getRefDatabase().getRefsByPrefix("refs/tags/");
 

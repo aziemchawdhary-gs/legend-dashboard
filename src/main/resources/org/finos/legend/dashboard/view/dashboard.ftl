@@ -10,7 +10,7 @@
 <body>
     <header>
         <h1>Legend Versions Dashboard</h1>
-        <p class="subtitle">SDLC release history with dependency versions</p>
+        <p class="subtitle">${data.primaryDisplayName()} release history with dependency versions</p>
     </header>
 
     <main>
@@ -18,7 +18,7 @@
         <div class="release-card">
             <div class="release-header" onclick="this.parentElement.classList.toggle('expanded')">
                 <h2>
-                    <span class="version-badge">SDLC ${release.version}</span>
+                    <span class="version-badge">${data.primaryDisplayName()} ${release.version}</span>
                     <span class="tag-name">${release.tag}</span>
                 </h2>
                 <span class="expand-icon">&#9660;</span>
@@ -34,82 +34,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="${release.engineChanged()?then('changed', '')}">
-                            <td>legend-engine</td>
-                            <td><code>${release.deps.engineVersion()}</code></td>
+                        <#list release.dependencies as dep>
+                        <tr class="${dep.changed()?then('changed', '')}">
+                            <td>${dep.displayName()}</td>
+                            <td><code>${dep.version()}</code></td>
                             <td>
-                                <#if release.engineChanged()>
-                                    <span class="change-indicator" title="was ${release.previousDeps.engineVersion()}">&#x2191; from ${release.previousDeps.engineVersion()}</span>
+                                <#if dep.changed()>
+                                    <span class="change-indicator" title="was ${dep.previousVersion()}">&#x2191; from ${dep.previousVersion()}</span>
                                 <#elseif release.hasPreviousRelease()>
                                     <span class="no-change">&mdash;</span>
                                 </#if>
                             </td>
                         </tr>
-                        <tr class="${release.pureChanged()?then('changed', '')}">
-                            <td>legend-pure</td>
-                            <td><code>${release.deps.pureVersion()}</code></td>
-                            <td>
-                                <#if release.pureChanged()>
-                                    <span class="change-indicator" title="was ${release.previousDeps.pureVersion()}">&#x2191; from ${release.previousDeps.pureVersion()}</span>
-                                <#elseif release.hasPreviousRelease()>
-                                    <span class="no-change">&mdash;</span>
-                                </#if>
-                            </td>
-                        </tr>
-                        <tr class="${release.sharedChanged()?then('changed', '')}">
-                            <td>legend-shared</td>
-                            <td><code>${release.deps.sharedVersion()}</code></td>
-                            <td>
-                                <#if release.sharedChanged()>
-                                    <span class="change-indicator" title="was ${release.previousDeps.sharedVersion()}">&#x2191; from ${release.previousDeps.sharedVersion()}</span>
-                                <#elseif release.hasPreviousRelease()>
-                                    <span class="no-change">&mdash;</span>
-                                </#if>
-                            </td>
-                        </tr>
+                        </#list>
                     </tbody>
                 </table>
             </div>
 
             <#if release.hasPreviousRelease()>
             <div class="commits-section">
-                <h3>Commits in SDLC ${release.previousTag} &rarr; ${release.tag}</h3>
-                <div hx-get="/commits/sdlc?from=${release.previousTag}&amp;to=${release.tag}"
+                <h3>Commits in ${data.primaryDisplayName()} ${release.previousTag} &rarr; ${release.tag}</h3>
+                <div hx-get="/commits/${data.primaryKey()}?from=${release.previousTag}&amp;to=${release.tag}"
                      hx-trigger="intersect once"
                      hx-swap="innerHTML"
                      class="commits-container">
-                    <p class="loading">Loading SDLC commits...</p>
+                    <p class="loading">Loading ${data.primaryDisplayName()} commits...</p>
                 </div>
 
-                <#if release.engineChanged()>
-                <h3>Commits in engine ${release.previousDeps.engineVersion()} &rarr; ${release.deps.engineVersion()}</h3>
-                <div hx-get="/commits/engine?from=${release.previousDeps.engineVersion()}&amp;to=${release.deps.engineVersion()}"
+                <#list release.changedDependencies as dep>
+                <h3>Commits in ${dep.displayName()} ${dep.previousVersion()} &rarr; ${dep.version()}</h3>
+                <div hx-get="/commits/${dep.key()}?from=${dep.previousVersion()}&amp;to=${dep.version()}"
                      hx-trigger="intersect once"
                      hx-swap="innerHTML"
                      class="commits-container">
-                    <p class="loading">Loading engine commits...</p>
+                    <p class="loading">Loading ${dep.displayName()} commits...</p>
                 </div>
-                </#if>
-
-                <#if release.pureChanged()>
-                <h3>Commits in pure ${release.previousDeps.pureVersion()} &rarr; ${release.deps.pureVersion()}</h3>
-                <div hx-get="/commits/pure?from=${release.previousDeps.pureVersion()}&amp;to=${release.deps.pureVersion()}"
-                     hx-trigger="intersect once"
-                     hx-swap="innerHTML"
-                     class="commits-container">
-                    <p class="loading">Loading pure commits...</p>
-                </div>
-                </#if>
-
-                <#if release.sharedChanged()>
-                <h3>Commits in shared ${release.previousDeps.sharedVersion()} &rarr; ${release.deps.sharedVersion()}</h3>
-                <div hx-get="/commits/shared?from=${release.previousDeps.sharedVersion()}&amp;to=${release.deps.sharedVersion()}"
-                     hx-trigger="intersect once"
-                     hx-swap="innerHTML"
-                     class="commits-container">
-                    <p class="loading">Loading shared commits...</p>
-                </div>
-                </#if>
+                </#list>
             </div>
             </#if>
         </div>

@@ -6,21 +6,27 @@ server:
     - type: http
       port: 8081
 
-sdlc:
-  path: ../legend-sdlc
-  tagPrefix: "legend-sdlc-"
-  githubUrl: "https://github.com/finos/legend-sdlc"
-engine:
-  path: ../legend-engine
-  tagPrefix: "legend-engine-"
-  githubUrl: "https://github.com/finos/legend-engine"
-pure:
-  path: ../legend-pure
-  tagPrefix: "legend-pure-"
-  githubUrl: "https://github.com/finos/legend-pure"
-shared:
-  path: ../legend-shared
-  tagPrefix: "legend-shared-"
-  githubUrl: "https://github.com/finos/legend-shared"
-
+primaryProject: "sdlc"
 recentTagCount: 10
+workspaceDir: "./repos"
+
+repos:
+  sdlc:
+    displayName: "SDLC"
+    tagPrefix: "legend-sdlc-"
+    githubUrl: "https://github.com/finos/legend-sdlc"
+  engine:
+    displayName: "legend-engine"
+    tagPrefix: "legend-engine-"
+    githubUrl: "https://github.com/finos/legend-engine"
+    pomProperty: "legend.engine.version"
+  pure:
+    displayName: "legend-pure"
+    tagPrefix: "legend-pure-"
+    githubUrl: "https://github.com/finos/legend-pure"
+    pomProperty: "legend.pure.version"
+  shared:
+    displayName: "legend-shared"
+    tagPrefix: "legend-shared-"
+    githubUrl: "https://github.com/finos/legend-shared"
+    pomProperty: "legend.shared.version"
