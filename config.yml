@@ -19,14 +19,17 @@ repos:
     displayName: "legend-engine"
     tagPrefix: "legend-engine-"
     githubUrl: "https://github.com/finos/legend-engine"
-    pomProperty: "legend.engine.version"
+    pomProperties:
+      - "legend.engine.version"
   pure:
     displayName: "legend-pure"
     tagPrefix: "legend-pure-"
     githubUrl: "https://github.com/finos/legend-pure"
-    pomProperty: "legend.pure.version"
+    pomProperties:
+      - "legend.pure.version"
   shared:
     displayName: "legend-shared"
     tagPrefix: "legend-shared-"
     githubUrl: "https://github.com/finos/legend-shared"
-    pomProperty: "legend.shared.version"
+    pomProperties:
+      - "legend.shared.version"

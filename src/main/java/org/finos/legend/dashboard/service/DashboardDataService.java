@@ -40,10 +40,10 @@ public class DashboardDataService {
         this.pomParser = pomParser;
         this.recentTagCount = recentTagCount;
 
-        // Build ordered map of dependency repos (those with pomProperty set)
+        // Build ordered map of dependency repos (those with pomProperties set)
         this.dependencyConfigs = new LinkedHashMap<>();
         for (Map.Entry<String, RepoConfig> entry : repoConfigs.entrySet()) {
-            if (entry.getValue().getPomProperty() != null) {
+            if (entry.getValue().getPomProperties() != null && !entry.getValue().getPomProperties().isEmpty()) {
                 dependencyConfigs.put(entry.getKey(), entry.getValue());
             }
         }
@@ -103,8 +103,14 @@ public class DashboardDataService {
                 Map<String, String> versions = new LinkedHashMap<>();
                 for (Map.Entry<String, RepoConfig> entry : dependencyConfigs.entrySet()) {
                     String depKey = entry.getKey();
-                    String pomProp = entry.getValue().getPomProperty();
-                    versions.put(depKey, props.getOrDefault(pomProp, "unknown"));
+                    String resolvedVersion = "unknown";
+                    for (String pomProp : entry.getValue().getPomProperties()) {
+                        if (props.containsKey(pomProp)) {
+                            resolvedVersion = props.get(pomProp);
+                            break;
+                        }
+                    }
+                    versions.put(depKey, resolvedVersion);
                 }
                 return versions;
             } catch (Exception e) {

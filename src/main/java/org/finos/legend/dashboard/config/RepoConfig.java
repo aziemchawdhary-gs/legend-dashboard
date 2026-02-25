@@ -1,7 +1,11 @@
 package org.finos.legend.dashboard.config;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotEmpty;
+
+import java.util.List;
 
 public class RepoConfig {
 
@@ -19,8 +23,10 @@ public class RepoConfig {
     @JsonProperty
     private String displayName;
 
-    @JsonProperty
-    private String pomProperty;
+    @JsonProperty("pomProperties")
+    @JsonAlias("pomProperty")
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private List<String> pomProperties;
 
     public String getPath() {
         return path;
@@ -54,11 +60,11 @@ public class RepoConfig {
         this.displayName = displayName;
     }
 
-    public String getPomProperty() {
-        return pomProperty;
+    public List<String> getPomProperties() {
+        return pomProperties;
     }
 
-    public void setPomProperty(String pomProperty) {
-        this.pomProperty = pomProperty;
+    public void setPomProperties(List<String> pomProperties) {
+        this.pomProperties = pomProperties;
     }
 }
