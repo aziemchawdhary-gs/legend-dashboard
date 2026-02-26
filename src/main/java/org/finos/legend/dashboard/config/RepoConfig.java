@@ -1,31 +1,21 @@
 package org.finos.legend.dashboard.config;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.util.List;
 
 public class RepoConfig {
 
-    @JsonProperty
     private String path;
 
     @NotEmpty
-    @JsonProperty
     private String tagPrefix;
 
     @NotEmpty
-    @JsonProperty
     private String githubUrl;
 
-    @JsonProperty
     private String displayName;
 
-    @JsonProperty("pomProperties")
-    @JsonAlias("pomProperty")
-    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     private List<String> pomProperties;
 
     public String getPath() {

@@ -1,13 +1,12 @@
 package org.finos.legend.dashboard.view;
 
-import io.dropwizard.views.common.View;
 import org.finos.legend.dashboard.model.CommitInfo;
 
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CommitsFragmentView extends View {
+public class CommitsFragmentView {
 
     private static final Pattern PR_PATTERN = Pattern.compile("#(\\d+)");
 
@@ -16,7 +15,6 @@ public class CommitsFragmentView extends View {
     private final String githubUrl;
 
     public CommitsFragmentView(List<CommitInfo> commits, String repo, String githubUrl) {
-        super("commits-fragment.ftl");
         this.commits = commits;
         this.repo = repo;
         this.githubUrl = githubUrl;

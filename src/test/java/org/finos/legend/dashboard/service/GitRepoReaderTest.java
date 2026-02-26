@@ -3,9 +3,9 @@ package org.finos.legend.dashboard.service;
 import org.eclipse.jgit.api.Git;
 import org.finos.legend.dashboard.config.RepoConfig;
 import org.finos.legend.dashboard.model.CommitInfo;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class GitRepoReaderTest {
     private Git git;
     private GitRepoReader reader;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         tempDir = Files.createTempDirectory("git-reader-test");
         git = Git.init().setDirectory(tempDir.toFile()).setInitialBranch("main").call();
@@ -55,7 +55,7 @@ public class GitRepoReaderTest {
         reader = new GitRepoReader(config);
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         git.close();
         Files.walk(tempDir)

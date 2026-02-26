@@ -1,9 +1,10 @@
 package org.finos.legend.dashboard.health;
 
-import com.codahale.metrics.health.HealthCheck;
 import org.finos.legend.dashboard.service.GitRepoReader;
+import org.springframework.boot.actuate.health.Health;
+import org.springframework.boot.actuate.health.HealthIndicator;
 
-public class GitRepoHealthCheck extends HealthCheck {
+public class GitRepoHealthCheck implements HealthIndicator {
 
     private final GitRepoReader reader;
     private final String repoName;
@@ -14,10 +15,16 @@ public class GitRepoHealthCheck extends HealthCheck {
     }
 
     @Override
-    protected Result check() {
+    public Health health() {
         if (reader.isAccessible()) {
-            return Result.healthy("Git repository %s is accessible", repoName);
+            return Health.up()
+                    .withDetail("repository", repoName)
+                    .withDetail("message", "Git repository " + repoName + " is accessible")
+                    .build();
         }
-        return Result.unhealthy("Git repository %s is not accessible", repoName);
+        return Health.down()
+                .withDetail("repository", repoName)
+                .withDetail("message", "Git repository " + repoName + " is not accessible")
+                .build();
     }
 }

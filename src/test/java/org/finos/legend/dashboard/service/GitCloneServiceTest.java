@@ -2,9 +2,9 @@ package org.finos.legend.dashboard.service;
 
 import org.eclipse.jgit.api.Git;
 import org.finos.legend.dashboard.config.RepoConfig;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class GitCloneServiceTest {
     private Path workspaceDir;
     private Git remoteGit;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         remoteDir = Files.createTempDirectory("clone-test-remote");
         workspaceDir = Files.createTempDirectory("clone-test-workspace");
@@ -40,7 +40,7 @@ public class GitCloneServiceTest {
         remoteGit.tag().setName("test-repo-2.0.0").call();
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         remoteGit.close();
         deleteDir(remoteDir);

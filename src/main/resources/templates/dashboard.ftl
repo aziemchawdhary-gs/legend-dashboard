@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legend Versions Dashboard</title>
-    <link rel="stylesheet" href="/assets/style.css">
-    <script src="/assets/htmx.min.js"></script>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/htmx.min.js"></script>
 </head>
 <body>
     <header>
@@ -54,7 +54,7 @@
             <#if release.hasPreviousRelease()>
             <div class="commits-section">
                 <h3>Commits in ${data.primaryDisplayName()} ${release.previousTag} &rarr; ${release.tag}</h3>
-                <div hx-get="/commits/${data.primaryKey()}?from=${release.previousTag}&amp;to=${release.tag}"
+                <div hx-get="commits/${data.primaryKey()}?from=${release.previousTag}&amp;to=${release.tag}"
                      hx-trigger="intersect once"
                      hx-swap="innerHTML"
                      class="commits-container">
@@ -63,7 +63,7 @@
 
                 <#list release.changedDependencies as dep>
                 <h3>Commits in ${dep.displayName()} ${dep.previousVersion()} &rarr; ${dep.version()}</h3>
-                <div hx-get="/commits/${dep.key()}?from=${dep.previousVersion()}&amp;to=${dep.version()}"
+                <div hx-get="commits/${dep.key()}?from=${dep.previousVersion()}&amp;to=${dep.version()}"
                      hx-trigger="intersect once"
                      hx-swap="innerHTML"
                      class="commits-container">

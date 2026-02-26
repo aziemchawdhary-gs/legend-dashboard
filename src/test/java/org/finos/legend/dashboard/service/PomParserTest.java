@@ -1,6 +1,6 @@
 package org.finos.legend.dashboard.service;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 

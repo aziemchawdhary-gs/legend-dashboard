@@ -1,0 +1,50 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /sdlcVersions
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  freemarker:
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+    settings:
+      output_format: HTMLOutputFormat
+
+dashboard:
+  primary-project: sdlc
+  recent-tag-count: 10
+  workspace-dir: ./repos
+  repos:
+    sdlc:
+      display-name: SDLC
+      tag-prefix: "legend-sdlc-"
+      github-url: "https://github.com/finos/legend-sdlc"
+    engine:
+      display-name: legend-engine
+      tag-prefix: "legend-engine-"
+      github-url: "https://github.com/finos/legend-engine"
+      pom-properties:
+        - "legend.engine.version"
+    pure:
+      display-name: legend-pure
+      tag-prefix: "legend-pure-"
+      github-url: "https://github.com/finos/legend-pure"
+      pom-properties:
+        - "legend.pure.version"
+    shared:
+      display-name: legend-shared
+      tag-prefix: "legend-shared-"
+      github-url: "https://github.com/finos/legend-shared"
+      pom-properties:
+        - "legend.shared.version"
