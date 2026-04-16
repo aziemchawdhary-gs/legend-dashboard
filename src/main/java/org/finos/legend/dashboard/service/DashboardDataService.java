@@ -151,6 +151,11 @@ public class DashboardDataService {
         return config != null ? config.getGithubUrl() : null;
     }
 
+    public void clearCaches() {
+        depsCache.clear();
+        commitsCache.clear();
+    }
+
     private GitRepoReader getReaderForRepo(String repo) {
         GitRepoReader reader = readers.get(repo);
         if (reader == null) {

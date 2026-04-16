@@ -31,6 +31,28 @@ header {
     margin-bottom: 2rem;
 }
 
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.refresh-btn {
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.refresh-btn:hover {
+    background: #1557b0;
+}
+
 header h1 {
     font-size: 1.75rem;
     font-weight: 600;

@@ -9,8 +9,15 @@
 </head>
 <body>
     <header>
-        <h1>Legend Versions Dashboard</h1>
-        <p class="subtitle">${data.primaryDisplayName()} release history with dependency versions</p>
+        <div class="header-row">
+            <div>
+                <h1>Legend Versions Dashboard</h1>
+                <p class="subtitle">${data.primaryDisplayName()} release history with dependency versions</p>
+            </div>
+            <form method="post" action="refresh">
+                <button type="submit" class="refresh-btn">Refresh Data</button>
+            </form>
+        </div>
     </header>
 
     <main>
